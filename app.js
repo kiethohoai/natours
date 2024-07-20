@@ -20,7 +20,7 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`),
 );
 
-// todo Get All Tours
+// todo GET All Tours
 app.get('/api/v1/tours', (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -31,7 +31,7 @@ app.get('/api/v1/tours', (req, res) => {
   });
 });
 
-// todo Get Tour By ID
+// todo GET Tour By ID
 app.get('/api/v1/tours/:id', (req, res) => {
   const id = +req.params.id;
   const tour = tours.find((el) => el.id === +req.params.id);
@@ -52,7 +52,7 @@ app.get('/api/v1/tours/:id', (req, res) => {
   });
 });
 
-//todo Create A New Tour
+//todo POST Create A New Tour
 app.post('/api/v1/tours', (req, res) => {
   const newId = tours[tours.length - 1].id + 1;
   const newTour = Object.assign({ id: newId }, req.body);
@@ -71,6 +71,24 @@ app.post('/api/v1/tours', (req, res) => {
       });
     },
   );
+});
+
+// TODO PATCH Update A Tour
+app.patch('/api/v1/tours/:id', (req, res) => {
+  const id = +req.params.id;
+
+  if (id > tours.length) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+  }
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour: '<Update tour here...>',
+    },
+  });
 });
 
 app.listen(port, () => {
