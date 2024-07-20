@@ -6,6 +6,12 @@ const port = 3000;
 // middleware
 app.use(express.json());
 
+// own middleware
+app.use((req, res, next) => {
+  console.log('Hello from the middleware!!!');
+  next();
+});
+
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`),
 );
@@ -25,8 +31,7 @@ const getTour = (req, res) => {
   const id = +req.params.id;
   const tour = tours.find((el) => el.id === +req.params.id);
 
-  // if (id > tours.length)
-  if (!tour) {
+  if (id > tours.length) {
     return res.status(404).json({
       status: 'fail',
       message: 'Invalid ID',
@@ -36,7 +41,7 @@ const getTour = (req, res) => {
   res.status(200).json({
     status: 'success',
     data: {
-      tour,
+      tour: tour,
     },
   });
 };
@@ -103,7 +108,7 @@ const deleteTour = (req, res) => {
 app.route('/api/v1/tours').get(getAllToours).post(createTour);
 
 app
-  .route('/api/v1/tours/:ids')
+  .route('/api/v1/tours/:id')
   .get(getTour)
   .patch(updateTour)
   .delete(deleteTour);
