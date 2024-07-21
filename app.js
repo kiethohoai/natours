@@ -1,12 +1,12 @@
 const fs = require('fs');
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 const port = 3000;
 
-// middleware
+// todo middleware
+app.use(morgan('dev'));
 app.use(express.json());
-
-// own middleware
 app.use((req, res, next) => {
   console.log('Hello from the middleware!!!');
   next();
@@ -16,7 +16,7 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`),
 );
 
-// TODO ALL CALLBACK FUNC
+// TODO Route Handle
 const getAllToours = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -98,7 +98,7 @@ const deleteTour = (req, res) => {
   });
 };
 
-// todo ROUTES
+// todo Routers
 // app.get('/api/v1/tours', getAllToours);
 // app.post('/api/v1/tours', createTour);
 // app.get('/api/v1/tours/:id', getTour);
@@ -113,6 +113,7 @@ app
   .patch(updateTour)
   .delete(deleteTour);
 
+// todo Start server
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
