@@ -6,7 +6,11 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 
 // middleware
-app.use(morgan('dev'));
+console.log('🚀CHECK  process.env.NODE_ENV =', process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
 app.use(express.json());
 
 // static files
