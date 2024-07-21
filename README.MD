@@ -18,3 +18,4 @@
 017 A Better File Structure
 018 Param Middleware
 019 Chaining Multiple Middleware Functions
+020 Serving Static Files
