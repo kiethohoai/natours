@@ -3,3 +3,4 @@
 002 What is MongoDB
 003 No Need to Install MongoDB Locally
 011 Using Compass App for CRUD Operations
+012 Creating a Hosted Database with Atlas
