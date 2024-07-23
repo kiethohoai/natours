@@ -5,6 +5,7 @@ const app = require('./app');
 
 dotenv.config({ path: './config.env' });
 
+// Connect to DB
 const DB = process.env.DATABASE;
 mongoose
   .connect(DB, {
@@ -13,6 +14,7 @@ mongoose
   })
   .then(() => console.log('DB Connection successfully'));
 
+// Defined Schema
 const tourSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -29,7 +31,24 @@ const tourSchema = new mongoose.Schema({
   },
 });
 
+// Create a modal
 const Tour = mongoose.model('Tour', tourSchema);
+
+// Create document
+const testTour = new Tour({
+  name: 'Hai Van Pass',
+  rating: 4.9,
+  price: 100,
+});
+
+testTour
+  .save()
+  .then((doc) => {
+    console.log(doc);
+  })
+  .catch((err) => {
+    console.log('ERROR :', err);
+  });
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
