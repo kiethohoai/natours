@@ -1,8 +1,8 @@
-const dotenv = require('dotenv');
-const mongoose = require('mongoose');
 const app = require('./app');
-// / const { Schema } = mongoose;
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
+// config .env
 dotenv.config({ path: './config.env' });
 
 // Connect to DB
