@@ -9,3 +9,5 @@
 08 - Using MongoDB with Mongoose
 001 Section Intro
 002 Connecting Our Database with the Express App
+003 What Is Mongoose
+004 Creating a Simple Tour Model
