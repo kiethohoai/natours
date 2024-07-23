@@ -16,7 +16,5 @@
 007 Refactoring for MVC
 008 Another Way of Creating Documents
 009 Reading Documents
-010 Updating Documents
-011 Deleting Documents
-012 Modelling the Tours
 013 Importing Development Data
+010 Updating Documents
